@@ -1,16 +1,18 @@
 import Cart from "./Components/Cart";
 import Header from "./Components/Header";
-import Products from "./Components/Products";
 import Home from "./Pages/Home";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ViewProductPage from "./Pages/ViewProductPage";
 import SignIn from "./Components/SignIn";
 import Signup from "./Components/Signup";
 import Post from "./Store/PostContext";
+import SidebarControl from "./Store/SidebarContext"
+
 
 function App() {
   return (
     <div className="App">
+      <SidebarControl>
       <Post>
       <Router>
         <Switch>
@@ -32,7 +34,9 @@ function App() {
         </Switch>
       </Router>
       </Post>
+    </SidebarControl>
     </div>
+  
   );
 }
 
