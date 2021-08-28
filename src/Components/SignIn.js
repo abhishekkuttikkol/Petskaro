@@ -1,10 +1,27 @@
 import React, { useState } from "react";
 import { LockClosedIcon } from "@heroicons/react/solid";
 import { useHistory } from "react-router-dom";
+import { App } from "../Firebase/config";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    App.auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        history.push("/");
+      })
+      .catch((error) => { 
+        alert(error.message);
+        setEmail('')
+        setPassword('')
+        history.push('/sign-in')
+      });
+  }
+
   const history = useHistory()
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -19,7 +36,7 @@ const SignIn = () => {
             Sign in to your account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Or{" "}
+            Create an account? {" "}
             <a
                 href=""
               onClick={()=>{
@@ -31,7 +48,7 @@ const SignIn = () => {
             </a>
           </p>
         </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6" >
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
@@ -86,7 +103,6 @@ const SignIn = () => {
 
             <div className="text-sm">
               <a
-                href="#"
                 className="font-medium text-indigo-600 hover:text-indigo-500"
               >
                 Forgot your password?
