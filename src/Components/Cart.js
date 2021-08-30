@@ -2,6 +2,7 @@ import React from 'react'
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
+import { useHistory } from 'react-router-dom';
 
 const products = [
     {
@@ -38,10 +39,11 @@ const products = [
   ];
 
 const Cart = () => {
+  const history = useHistory()
     const [open, setOpen] = useState(true)
     return (
         <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={setOpen}>
+      <Dialog as="div" className="fixed z-50 inset-0 overflow-hidden" onClose={setOpen}>
         <div className="absolute inset-0 overflow-hidden">
           <Transition.Child
             as={Fragment}
@@ -74,7 +76,10 @@ const Cart = () => {
                         <button
                           type="button"
                           className="-m-2 p-2 text-gray-400 hover:text-gray-500"
-                          onClick={() => setOpen(false)}
+                          onClick={() =>{ 
+                            setOpen(false)
+                            history.push('/')
+                          }}
                         >
                           <span className="sr-only">Close panel</span>
                           <XIcon className="h-6 w-6" aria-hidden="true" />
@@ -84,7 +89,7 @@ const Cart = () => {
 
                     <div className="mt-8">
                       <div className="flow-root">
-                        <ul role="list" className="-my-6 divide-y divide-gray-200">
+                        <ul  className="-my-6 divide-y divide-gray-200">
                           {products.map((product) => (
                             <li key={product.id} className="py-6 flex">
                               <div className="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
@@ -130,7 +135,6 @@ const Cart = () => {
                     <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                     <div className="mt-6">
                       <a
-                        href="#"
                         className="flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
                       >
                         Checkout

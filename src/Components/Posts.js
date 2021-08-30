@@ -1,30 +1,30 @@
 import React from "react";
 
-const Posts = ({product}) => {
+const Posts = ({pet}) => {
   return (
     <div>
         <div class=" lg:w-full mb-4 p-2 cursor-pointer">
-          <div class="shadow-lg rounded-2xl p-5 bg-white dark:bg-gray-700 w-full">
-            <div key={product.id} className="group relative">
+          <div class="shadow-xl rounded-2xl p-5 bg-white dark:bg-gray-700 w-full">
+            <div key={pet.id} className="group relative">
               <div className=" w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
                 <img
-                  src={product.imageSrc}
-                  alt={product.imageAlt}
+                  src={pet.imageSrc}
+                  alt={pet.imageAlt}
                   className="w-full h-full object-center object-cover lg:w-full lg:h-full"
                 />
               </div>
               <div className="mt-4 flex justify-between">
                 <div>
                   <h3 className="text-sm text-gray-700">
-                    <a href={product.href}>
+                    <a href={pet.href}>
                       <span aria-hidden="true" className="absolute inset-0" />
-                      {product.name}
+                      {pet.name}
                     </a>
                   </h3>
-                  <p className="mt-1 text-sm text-gray-500">{product.color}</p>
+                  <p className="mt-1 text-sm text-gray-500">{pet.description}</p>
                 </div>
                 <p className="text-sm font-medium text-gray-900">
-                  {product.price}
+                  {pet.price}
                 </p>
               </div>
             </div>

@@ -5,9 +5,9 @@ import { createContext } from "react";
 export const PostContext = createContext(null);
 
 function Post({ children }) {
-  const [products, setProducts] = useState([]);
+  const [pets, setPets] = useState([]);
   return (
-    <PostContext.Provider value={{ products, setProducts }}>
+    <PostContext.Provider value={{ pets, setPets }}>
       {children}
     </PostContext.Provider>
   );

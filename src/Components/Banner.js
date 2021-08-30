@@ -1,5 +1,4 @@
 import React from 'react'
-import { SpeakerphoneIcon, XIcon } from '@heroicons/react/outline'
 import { useHistory } from 'react-router-dom'
 import { useContext } from 'react'
 import { AuthContext } from '../Store/AuthContext'
@@ -14,7 +13,7 @@ const Banner = () => {
         <div className="flex items-center justify-between flex-wrap">
           <div className="w-0 flex-1 flex items-center">
             <span className="flex p-2 rounded-lg bg-indigo-800">
-              <SpeakerphoneIcon className="h-6 w-6 text-white" aria-hidden="true" />
+              {/* <SpeakerphoneIcon className="h-6 w-6 text-white" aria-hidden="true" /> */}
             </span>
             <p className="ml-3 font-medium text-white truncate">
               <span className="md:hidden">Sign up to Explore</span>

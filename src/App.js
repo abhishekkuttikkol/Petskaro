@@ -1,6 +1,4 @@
 import React from "react";
-import Cart from "./Components/Cart";
-import Header from "./Components/Header";
 import Home from "./Pages/Home";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ViewProductPage from "./Pages/ViewProductPage";
@@ -11,13 +9,14 @@ import SidebarControl from "./Store/SidebarContext"
 import {App as Firebase} from "./Firebase/config"
 import { useEffect } from "react";
 import { useContext } from "react";
-import Auth, { AuthContext } from "./Store/AuthContext";
+import { AuthContext } from "./Store/AuthContext";
+import Cart from "./Components/Cart";
+import Banner from "./Components/Banner";
 
 function App() {
   const {setUser} = useContext(AuthContext)
   useEffect(() => {
     Firebase.auth().onAuthStateChanged((user)=>{
-      console.log(user)
       setUser(user)
     })
   })
@@ -31,9 +30,11 @@ function App() {
             <Home />
           </Route>
           <Route exact path="/cart">
-            <Cart />
+            <Cart/>
+            <Banner/>
+            <Home />
           </Route>
-          <Route exact path="/products">
+          <Route exact path="/pets:petid">
             <ViewProductPage />
           </Route>
           <Route exact path="/sign-in">
