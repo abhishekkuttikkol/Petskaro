@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { AuthContext } from "./Store/AuthContext";
 import Cart from "./Components/Cart";
-import Banner from "./Components/Banner";
+
 
 function App() {
   const {setUser} = useContext(AuthContext)
@@ -31,7 +31,6 @@ function App() {
           </Route>
           <Route exact path="/cart">
             <Cart/>
-            <Banner/>
             <Home />
           </Route>
           <Route exact path="/pets:petid">

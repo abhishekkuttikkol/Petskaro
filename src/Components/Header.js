@@ -34,7 +34,7 @@ const Header = () => {
                                   setopen(true)
                                 }} class="md:invisible h-10 px-5 m-2 text-blue-100 transition-colors duration-150 bg-blue-600 rounded-lg focus:shadow-outline hover:bg-blue-700">Menu</button>  
                                 <a class="block relative hidden md:block text-gray-500">
-                                    {user ? <span class="text-base font-normal">Welcome {user.displayName}</span> : <button onClick={()=>history.push('/sign-up')} class="h-10 px-5 m-2 text-blue-100 transition-colors duration-150 bg-blue-600 rounded-lg focus:shadow-outline hover:bg-blue-700">Sign Up</button>}
+                                    {user ? <span class="text-base font-normal">Welcome {user.displayName}</span> : <button onClick={()=>history.push('/sign-in')} class="h-10 px-5 m-2 text-blue-100 transition-colors duration-150 bg-blue-600 rounded-lg focus:shadow-outline hover:bg-blue-700">Sign In</button>}
                                 </a>
                               
                             </div>

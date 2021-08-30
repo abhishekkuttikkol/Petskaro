@@ -8,6 +8,7 @@ import { App } from '../Firebase/config'
 import LockIcon from '@material-ui/icons/Lock';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { useHistory } from 'react-router-dom'
+import petskaro from "../petskaro.png"
 
 const Sidebar = () => {
     const history = useHistory()
@@ -21,7 +22,7 @@ const Sidebar = () => {
         <div class="h-screen hidden  sm:block lg:block my-4 ml-4 shadow-2xl relative w-50">
             <div class="bg-white h-full rounded-2xl dark:bg-gray-700">
                 <div class="flex items-center justify-center pt-6">
-                    <svg width="35" height="30" viewBox="0 0 256 366" version="1.1" preserveAspectRatio="xMidYMid">
+                    {/* <svg width="35" height="30" viewBox="0 0 256 366" version="1.1" preserveAspectRatio="xMidYMid">
                         <defs>
                             <linearGradient x1="12.5189534%" y1="85.2128611%" x2="88.2282959%" y2="10.0225497%" id="linearGradient-1">
                                 <stop stop-color="#FF0057" stop-opacity="0.16" offset="0%">
@@ -38,7 +39,8 @@ const Sidebar = () => {
                             <circle fill="url(#linearGradient-1)" opacity="0.5" transform="translate(147.013244, 147.014675) rotate(90.000000) translate(-147.013244, -147.014675) " cx="147.013244" cy="147.014675" r="78.9933938">
                             </circle>
                         </g>
-                    </svg>
+                    </svg> */}
+                    <img class="h-28" src={petskaro} alt=""/>
                 </div>
                 <nav class="mt-6">
                     <div>
@@ -182,7 +184,7 @@ const Sidebar = () => {
         <div class="w-full">
             <div class="bg-white h-full rounded-2xl dark:bg-gray-700">
                 <div class="flex items-center justify-center pt-6">
-                    <svg width="35" height="30" viewBox="0 0 256 366" version="1.1" preserveAspectRatio="xMidYMid">
+                    {/* <svg width="35" height="30" viewBox="0 0 256 366" version="1.1" preserveAspectRatio="xMidYMid">
                         <defs>
                             <linearGradient x1="12.5189534%" y1="85.2128611%" x2="88.2282959%" y2="10.0225497%" id="linearGradient-1">
                                 <stop stop-color="#FF0057" stop-opacity="0.16" offset="0%">
@@ -199,7 +201,8 @@ const Sidebar = () => {
                             <circle fill="url(#linearGradient-1)" opacity="0.5" transform="translate(147.013244, 147.014675) rotate(90.000000) translate(-147.013244, -147.014675) " cx="147.013244" cy="147.014675" r="78.9933938">
                             </circle>
                         </g>
-                    </svg>
+                    </svg> */}
+                    <img class="h-28" src={petskaro} alt=""/>
                 </div>
                 <nav class="mt-6">
                     <div>
