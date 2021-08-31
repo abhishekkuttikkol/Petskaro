@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import { SidebarContext } from "../Store/SidebarContext";
 import { AuthContext } from "../Store/AuthContext";
 import { SearchContext } from "../Store/SearchContext";
+import CategoryDropdown from "./CategoryDropdown";
+import MenuIcon from '@material-ui/icons/Menu';
 
 const Header = () => {
   const { setSearchTerm, searchTerm } = useContext(SearchContext);
@@ -42,11 +44,12 @@ const Header = () => {
                 class="block w-full py-1.5 pl-10 pr-4 leading-normal rounded-2xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 ring-opacity-90 bg-gray-100 dark:bg-gray-800 text-gray-400 aa-input"
                 placeholder="Search"
               />
-              <div class="absolute right-0 hidden h-auto px-2 py-1 mr-2 text-xs text-gray-400 border border-gray-300 rounded-2xl md:block">
+              <div class="cursor-pointer absolute right-0 hidden h-auto px-2 py-1 mr-2 text-xs text-gray-400 border border-gray-300 rounded-2xl md:block">
                 +
               </div>
             </div>
           </div>
+          <CategoryDropdown/>
           <div class="relative p-1 flex items-center justify-end w-1/4 ml-5 mr-4 sm:mr-0 sm:right-auto">
             <button
               onClick={() => {
@@ -54,8 +57,9 @@ const Header = () => {
               }}
               class="md:invisible h-10 px-5 m-2 text-blue-100 transition-colors duration-150 bg-blue-600 rounded-lg focus:shadow-outline hover:bg-blue-700"
             >
-              Menu
+              <MenuIcon/>
             </button>
+            
             <a class="relative hidden md:block text-gray-500">
               {user ? (
                 <span class="text-base font-normal">
@@ -64,7 +68,7 @@ const Header = () => {
               ) : (
                 <button
                   onClick={() => history.push("/sign-in")}
-                  class="h-10 px-5 m-2 text-blue-100 transition-colors duration-150 bg-blue-600 rounded-lg focus:shadow-outline hover:bg-blue-700"
+                  class="h-10 px-5 m-2 text-blue-100 transition-colors duration-150 bg-white-600 rounded-lg focus:shadow-outline bg-blue-600 hover:bg-blue-700"
                 >
                   Sign In
                 </button>

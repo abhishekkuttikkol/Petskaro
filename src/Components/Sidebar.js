@@ -252,6 +252,7 @@ const Sidebar = () => {
                                       Dashboard
                                     </span>
                                   </a>
+                                  
                                   <a
                                     onClick={() => {
                                       history.push("/cart");
