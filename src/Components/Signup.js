@@ -1,41 +1,41 @@
 import React, { useState } from "react";
 import { LockClosedIcon } from "@heroicons/react/solid";
 import { useHistory } from "react-router-dom";
-import { App, db } from "../Firebase/config"
+import { App, db } from "../Firebase/config";
 const Signup = () => {
-  const [name, setName] = useState('')
-  const [phone, setPhone] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const history = useHistory();
 
-  const handleSubmit =  (e) =>{
-    e.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (password.length < 6) {
       alert("Password must Contain 6 characters");
     } else {
       e.preventDefault();
       App.auth()
         .createUserWithEmailAndPassword(email, password)
-        .then((result) =>{
-          result.updateProfile({ displayName: name }).then(() =>  {
+        .then((result) => {
+          result.updateProfile({ displayName: name }).then(() => {
             db.collection("users")
               .add({
                 id: result.uid,
                 name: name,
-                email:email,
+                email: email,
                 phone: phone,
               })
               .then((response) => {
                 history.push("/");
               });
           });
-        }).catch((err)=>{
-          alert(err)
         })
-      
-    } 
-  }
+        .catch((err) => {
+          alert(err);
+        });
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -61,7 +61,7 @@ const Signup = () => {
             </a>
           </p>
         </div>
-        <form onSubmit={handleSubmit} className="mt-8 space-y-6" >
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
@@ -71,7 +71,7 @@ const Signup = () => {
               <input
                 id="name"
                 value={name}
-                onChange={(e)=>setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
                 name="name"
                 type="text"
                 autoComplete="name"
@@ -87,7 +87,7 @@ const Signup = () => {
               <input
                 id="phone"
                 value={phone}
-                onChange={(e)=>setPhone(e.target.value)}
+                onChange={(e) => setPhone(e.target.value)}
                 name="phone"
                 type="tel"
                 autoComplete="tel"
@@ -103,7 +103,7 @@ const Signup = () => {
               <input
                 id="email-address"
                 value={email}
-                onChange={(e)=>setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 name="email"
                 type="email"
                 autoComplete="email"
@@ -119,7 +119,7 @@ const Signup = () => {
               <input
                 id="password"
                 value={password}
-                onChange={(e)=>setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
                 name="password"
                 type="password"
                 autoComplete="current-password"
@@ -147,9 +147,7 @@ const Signup = () => {
             </div>
 
             <div className="text-sm">
-              <a
-                className="font-medium text-indigo-600 hover:text-indigo-500"
-              >
+              <a className="font-medium text-indigo-600 hover:text-indigo-500">
                 Forgot your password?
               </a>
             </div>

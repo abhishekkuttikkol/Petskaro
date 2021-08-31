@@ -7,22 +7,22 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = (e) => {
     e.preventDefault();
     App.auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
         history.push("/");
       })
-      .catch((error) => { 
+      .catch((error) => {
         alert(error.message);
-        setEmail('')
-        setPassword('')
-        history.push('/sign-in')
+        setEmail("");
+        setPassword("");
+        history.push("/sign-in");
       });
-  }
+  };
 
-  const history = useHistory()
+  const history = useHistory();
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
@@ -36,11 +36,11 @@ const SignIn = () => {
             Sign in to your account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Create an account? {" "}
+            Create an account?{" "}
             <a
-                href=""
-              onClick={()=>{
-                  history.push('/sign-up')
+              href=""
+              onClick={() => {
+                history.push("/sign-up");
               }}
               className="font-medium text-indigo-600 hover:text-indigo-500"
             >
@@ -48,7 +48,7 @@ const SignIn = () => {
             </a>
           </p>
         </div>
-        <form onSubmit={handleSubmit} className="mt-8 space-y-6" >
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
@@ -102,9 +102,7 @@ const SignIn = () => {
             </div>
 
             <div className="text-sm">
-              <a
-                className="font-medium text-indigo-600 hover:text-indigo-500"
-              >
+              <a className="font-medium text-indigo-600 hover:text-indigo-500">
                 Forgot your password?
               </a>
             </div>
