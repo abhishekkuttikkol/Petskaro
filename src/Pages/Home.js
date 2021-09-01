@@ -6,7 +6,7 @@ import Sidebar from "../Components/Sidebar";
 import { App } from "../Firebase/config";
 import { PostContext } from "../Store/PostContext";
 import Banner from "../Components/Banner";
-import { SearchContext } from "../Store/SearchContext";
+import { SearchContext } from "../Store/SearchContext"; 
 
 const Home = () => {
   useEffect(() => {
@@ -23,8 +23,8 @@ const Home = () => {
   const { searchTerm } = useContext(SearchContext);
   const { setPets, pets } = useContext(PostContext);
   const history = useHistory();
-
   return (
+    
     <main class="bg-gray-100 dark:bg-gray-800 rounded-2xl h-screen overflow-hidden relative">
       <div class="flex items-start justify-between">
         <Sidebar />
@@ -37,11 +37,15 @@ const Home = () => {
                 .filter((pet) => {
                   if (searchTerm === undefined) {
                     return pet;
+                  }else if (
+                    pet.sellerId.includes(searchTerm)
+                  ) {
+                    return pet;
                   } else if (
                     pet.name.toLowerCase().includes(searchTerm.toLowerCase())
                   ) {
                     return pet;
-                  }
+                  } 
                   return null;
                 })
                 .map((pet) => (

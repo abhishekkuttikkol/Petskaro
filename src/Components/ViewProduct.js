@@ -12,7 +12,6 @@ const ViewProduct = () => {
       .get()
       .then((snapshot) => {
         setPet(snapshot.data());
-        console.log(snapshot.data());
       });
   }, []);
 
@@ -83,7 +82,19 @@ const ViewProduct = () => {
           <div className="mt-4 lg:mt-0 lg:row-span-3">
             <h2 className="sr-only">Product information</h2>
             <p className="text-3xl text-gray-900">Price : {pet.price}</p>
-
+            <h3 className="text-md mt-16 font-medium text-gray-900">
+                  Seller Details :
+              </h3>
+              <div className="mt-4">
+                  <ul className="pl-4 list-disc text-md space-y-2">
+                      <li  className="text-gray-400">
+                        <span className="text-gray-600">Name : {pet.sellerName}</span>
+                      </li>
+                      <li  className="text-gray-400">
+                        <span className="text-gray-600">Phone : {pet.sellerPhone}</span>
+                      </li>
+                  </ul>
+                </div>
             <form className="mt-10">
               <button
                 type="submit"

@@ -9,11 +9,14 @@ import LockIcon from "@material-ui/icons/Lock";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useHistory } from "react-router-dom";
 import petskaro from "../petskaro.png";
+import { SearchContext } from "../Store/SearchContext";
+import BallotIcon from '@material-ui/icons/Ballot';
 
 const Sidebar = () => {
   const history = useHistory();
   const { open, setopen } = useContext(SidebarContext);
   const { user } = useContext(AuthContext);
+  const { setSearchTerm } = useContext(SearchContext);
   return (
     <div>
       <main class="bg-gray-100 dark:bg-gray-800 rounded-2xl h-screen overflow-hidden relative">
@@ -43,7 +46,12 @@ const Sidebar = () => {
               </div>
               <nav class="mt-6">
                 <div>
-                  <a class="cursor-pointer w-full font-thin uppercase text-blue-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start bg-gradient-to-r from-white to-blue-100  dark:from-gray-700 dark:to-gray-800 border-r-4 border-blue-500">
+                  <a
+                    onClick={() => {
+                      setSearchTerm();
+                    }}
+                    class="cursor-pointer w-full font-thin uppercase text-blue-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start bg-gradient-to-r from-white to-blue-100  dark:from-gray-700 dark:to-gray-800 border-r-4 border-blue-500"
+                  >
                     <span class="text-left">
                       <svg
                         width="20"
@@ -72,20 +80,21 @@ const Sidebar = () => {
                     </span>
                     <span class="mx-4 text-sm font-normal">Cart</span>
                   </a>
-                  <a class="cursor-pointer w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500">
+                  <a
+                    onClick={() => {
+                      if(user){
+                        setSearchTerm(user.uid);
+                      } else {
+                        history.push('/sign-in')
+                      }
+                      
+                    }}
+                    class="cursor-pointer w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500"
+                  >
                     <span class="text-left">
-                      <svg
-                        width="20"
-                        height="20"
-                        fill="currentColor"
-                        class="m-auto"
-                        viewBox="0 0 2048 1792"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M685 483q16 0 27.5-11.5t11.5-27.5-11.5-27.5-27.5-11.5-27 11.5-11 27.5 11 27.5 27 11.5zm422 0q16 0 27-11.5t11-27.5-11-27.5-27-11.5-27.5 11.5-11.5 27.5 11.5 27.5 27.5 11.5zm-812 184q42 0 72 30t30 72v430q0 43-29.5 73t-72.5 30-73-30-30-73v-430q0-42 30-72t73-30zm1060 19v666q0 46-32 78t-77 32h-75v227q0 43-30 73t-73 30-73-30-30-73v-227h-138v227q0 43-30 73t-73 30q-42 0-72-30t-30-73l-1-227h-74q-46 0-78-32t-32-78v-666h918zm-232-405q107 55 171 153.5t64 215.5h-925q0-117 64-215.5t172-153.5l-71-131q-7-13 5-20 13-6 20 6l72 132q95-42 201-42t201 42l72-132q7-12 20-6 12 7 5 20zm477 488v430q0 43-30 73t-73 30q-42 0-72-30t-30-73v-430q0-43 30-72.5t72-29.5q43 0 73 29.5t30 72.5z"></path>
-                      </svg>
+                      <BallotIcon/>
                     </span>
-                    <span class="mx-4 text-sm font-normal">My tasks</span>
+                    <span class="mx-4 text-sm font-normal">My Posts</span>
                   </a>
                   <a class="cursor-pointer w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500">
                     <span class="text-left">
@@ -236,7 +245,12 @@ const Sidebar = () => {
                               </div>
                               <nav class="mt-6">
                                 <div>
-                                  <a class="w-full font-thin uppercase text-blue-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start bg-gradient-to-r from-white to-blue-100 dark:from-gray-700 dark:to-gray-800 border-r-4 border-blue-500">
+                                  <a
+                                    onClick={() => {
+                                      setSearchTerm();
+                                    }}
+                                    class="w-full font-thin uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start dark:from-gray-700 dark:to-gray-800 border-r-4"
+                                  >
                                     <span class="text-left">
                                       <svg
                                         width="20"
@@ -252,7 +266,7 @@ const Sidebar = () => {
                                       Dashboard
                                     </span>
                                   </a>
-                                  
+
                                   <a
                                     onClick={() => {
                                       history.push("/cart");
@@ -270,21 +284,21 @@ const Sidebar = () => {
                                       Cart
                                     </span>
                                   </a>
-                                  <a class="w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500">
+                                  <a
+                                    onClick={() => {
+                                      if(user){
+                                        setSearchTerm(user.uid);
+                                      } else {
+                                        history.push('/sign-in')
+                                      }
+                                    }}
+                                    class="w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500"
+                                  >
                                     <span class="text-left">
-                                      <svg
-                                        width="20"
-                                        height="20"
-                                        fill="currentColor"
-                                        class="m-auto"
-                                        viewBox="0 0 2048 1792"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                      >
-                                        <path d="M685 483q16 0 27.5-11.5t11.5-27.5-11.5-27.5-27.5-11.5-27 11.5-11 27.5 11 27.5 27 11.5zm422 0q16 0 27-11.5t11-27.5-11-27.5-27-11.5-27.5 11.5-11.5 27.5 11.5 27.5 27.5 11.5zm-812 184q42 0 72 30t30 72v430q0 43-29.5 73t-72.5 30-73-30-30-73v-430q0-42 30-72t73-30zm1060 19v666q0 46-32 78t-77 32h-75v227q0 43-30 73t-73 30-73-30-30-73v-227h-138v227q0 43-30 73t-73 30q-42 0-72-30t-30-73l-1-227h-74q-46 0-78-32t-32-78v-666h918zm-232-405q107 55 171 153.5t64 215.5h-925q0-117 64-215.5t172-153.5l-71-131q-7-13 5-20 13-6 20 6l72 132q95-42 201-42t201 42l72-132q7-12 20-6 12 7 5 20zm477 488v430q0 43-30 73t-73 30q-42 0-72-30t-30-73v-430q0-43 30-72.5t72-29.5q43 0 73 29.5t30 72.5z"></path>
-                                      </svg>
+                                    <BallotIcon/>
                                     </span>
                                     <span class="mx-4 text-sm font-normal">
-                                      My tasks
+                                      My Posts
                                     </span>
                                   </a>
                                   <a class="w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500">

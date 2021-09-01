@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { LockClosedIcon } from "@heroicons/react/solid";
 import { useHistory } from "react-router-dom";
 import { App } from "../Firebase/config";
+import petskaro from "../petskaro.png";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -28,9 +29,9 @@ const SignIn = () => {
       <div className="max-w-md w-full space-y-8">
         <div>
           <img
-            className="mx-auto h-12 w-auto"
-            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-            alt="Workflow"
+            className="mx-auto h-40 w-auto"
+            src={petskaro}
+            alt="Logo"
           />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Sign in to your account
