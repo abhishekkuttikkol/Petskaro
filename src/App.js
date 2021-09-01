@@ -12,6 +12,7 @@ import { useContext } from "react";
 import { AuthContext } from "./Store/AuthContext";
 import Cart from "./Components/Cart";
 import Search from "./Store/SearchContext";
+import Contact from "./Components/Contact";
 
 function App() {
   const { setUser } = useContext(AuthContext);
@@ -42,6 +43,9 @@ function App() {
               </Route>
               <Route exact path="/sign-up">
                 <Signup />
+              </Route>
+              <Route exact path="/contact">
+                <Contact/>
               </Route>
             </Switch>
           </Router>
