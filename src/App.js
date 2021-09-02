@@ -15,6 +15,7 @@ import Search from "./Store/SearchContext";
 import Contact from "./Components/Contact";
 import WishList from "./Components/WishList";
 import ResetPassword from "./Components/ResetPassword";
+import "tailwindcss/tailwind.css"
 
 function App() {
   const { setUser } = useContext(AuthContext);
