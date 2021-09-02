@@ -13,6 +13,7 @@ import { AuthContext } from "./Store/AuthContext";
 import Cart from "./Components/Cart";
 import Search from "./Store/SearchContext";
 import Contact from "./Components/Contact";
+import WishList from "./Components/WishList";
 
 function App() {
   const { setUser } = useContext(AuthContext);
@@ -46,6 +47,9 @@ function App() {
               </Route>
               <Route exact path="/contact">
                 <Contact/>
+              </Route>
+              <Route exact path="/wish list">
+                <WishList/>
               </Route>
             </Switch>
           </Router>

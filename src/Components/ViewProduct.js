@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
-import { App } from "../Firebase/config";
+import { App, db } from "../Firebase/config";
+import { AuthContext } from "../Store/AuthContext";
 
 const ViewProduct = () => {
   const [pet, setPet] = useState([]);
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     const petId = window.location.pathname.split(":")[1];
     App.firestore()
@@ -11,9 +13,26 @@ const ViewProduct = () => {
       .doc(petId)
       .get()
       .then((snapshot) => {
-        setPet(snapshot.data());
+        const allPosts = { ...snapshot.data(), id: snapshot.id };
+        setPet(allPosts);
       });
   }, []);
+
+  const WishList = (e) => {
+    e.preventDefault();
+    db.collection("favourite")
+      .add({
+        userId: user.uid,
+        petId: pet.id,
+        imageSrc: pet.imageSrc,
+        name: pet.name,
+        price: pet.price,
+        description: pet.description,
+      })
+      .then(() => {
+        alert(`${pet.name} is added to WishList`);
+      });
+  };
 
   return (
     <div className="bg-white">
@@ -83,24 +102,33 @@ const ViewProduct = () => {
             <h2 className="sr-only">Product information</h2>
             <p className="text-3xl text-gray-900">Price : {pet.price}</p>
             <h3 className="text-md mt-16 font-medium text-gray-900">
-                  Seller Details :
-              </h3>
-              <div className="mt-4">
-                  <ul className="pl-4 list-disc text-md space-y-2">
-                      <li  className="text-gray-400">
-                        <span className="text-gray-600">Name : {pet.sellerName}</span>
-                      </li>
-                      <li  className="text-gray-400">
-                        <span className="text-gray-600">Phone : {pet.sellerPhone}</span>
-                      </li>
-                  </ul>
-                </div>
-            <form className="mt-10">
+              Seller Details :
+            </h3>
+            <div className="mt-4">
+              <ul className="pl-4 list-disc text-md space-y-2">
+                <li className="text-gray-400">
+                  <span className="text-gray-600">Name : {pet.sellerName}</span>
+                </li>
+                <li className="text-gray-400">
+                  <span className="text-gray-600">
+                    Phone : {pet.sellerPhone}
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <form className="mt-6 flex">
               <button
                 type="submit"
-                className="mt-10 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="mt-10 m-2 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 Add to bag
+              </button>
+              <button
+                onClick={WishList}
+                type="submit"
+                className="mt-10 m-2 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                Add to Wishlist
               </button>
             </form>
           </div>

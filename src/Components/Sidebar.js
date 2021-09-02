@@ -96,7 +96,12 @@ const Sidebar = () => {
                     </span>
                     <span class="mx-4 text-sm font-normal">My Posts</span>
                   </a>
-                  <a class="cursor-pointer w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500">
+                  <a
+                    onClick={() => {
+                      history.push("/wish list");
+                    }}
+                    class="cursor-pointer w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500"
+                  >
                     <span class="text-left">
                       <FavoriteIcon />
                     </span>
@@ -283,7 +288,12 @@ const Sidebar = () => {
                                       My Posts
                                     </span>
                                   </a>
-                                  <a class="w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500">
+                                  <a
+                                    onClick={() => {
+                                      history.push("/wish list");
+                                    }}
+                                    class="w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500"
+                                  >
                                     <span class="text-left">
                                       <FavoriteIcon />
                                     </span>
