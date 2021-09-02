@@ -43,7 +43,7 @@ const SignIn = () => {
               onClick={() => {
                 history.push("/sign-up");
               }}
-              className="font-medium text-indigo-600 hover:text-indigo-500"
+              className="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500"
             >
               Sign Up
             </a>
@@ -103,7 +103,11 @@ const SignIn = () => {
             </div>
 
             <div className="text-sm">
-              <a className="font-medium text-indigo-600 hover:text-indigo-500">
+              <a
+                onClick={()=>{
+                  history.push('/reset password')
+                }}
+                className="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500">
                 Forgot your password?
               </a>
             </div>

@@ -57,7 +57,7 @@ const Signup = () => {
               onClick={() => {
                 history.push("/sign-in");
               }}
-              className="font-medium text-indigo-600 hover:text-indigo-500"
+              className="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500"
             >
               Sign in
             </a>
@@ -146,12 +146,6 @@ const Signup = () => {
               >
                 Remember me
               </label>
-            </div>
-
-            <div className="text-sm">
-              <a className="font-medium text-indigo-600 hover:text-indigo-500">
-                Forgot your password?
-              </a>
             </div>
           </div>
 
