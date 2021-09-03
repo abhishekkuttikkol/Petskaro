@@ -23,7 +23,9 @@ const Posts = ({ pet }) => {
                 </h3>
                 <p className="mt-1 text-sm text-gray-500">{pet.description}</p>
               </div>
-              <p className="text-sm font-medium text-gray-900">&#x20B9; {pet.price}/-</p>
+              <p className="text-sm font-medium text-gray-900">
+                &#x20B9; {pet.price}/-
+              </p>
             </div>
           </div>
         </div>

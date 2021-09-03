@@ -4,15 +4,15 @@ import { SidebarContext } from "../Store/SidebarContext";
 import { AuthContext } from "../Store/AuthContext";
 import { SearchContext } from "../Store/SearchContext";
 import CategoryDropdown from "./CategoryDropdown";
-import MenuIcon from '@material-ui/icons/Menu';
+import MenuIcon from "@material-ui/icons/Menu";
 
 const Header = () => {
-  const [search, setSearch] = useState()
+  const [search, setSearch] = useState();
   useEffect(() => {
-    setSearchTerm(search)
-  }, [search])
+    setSearchTerm(search);
+  }, [search]);
   const { setSearchTerm } = useContext(SearchContext);
-  
+
   const { user } = useContext(AuthContext);
   const { setopen } = useContext(SidebarContext);
   const history = useHistory();
@@ -54,7 +54,7 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <CategoryDropdown/>
+          <CategoryDropdown />
           <div class="relative p-1 flex items-center justify-end w-1/4 ml-5 mr-4 sm:mr-0 sm:right-auto">
             <button
               onClick={() => {
@@ -62,9 +62,9 @@ const Header = () => {
               }}
               class="md:invisible h-10 px-5 m-2 text-blue-100 transition-colors duration-150 bg-blue-600 rounded-lg focus:shadow-outline hover:bg-blue-700"
             >
-              <MenuIcon/>
+              <MenuIcon />
             </button>
-            
+
             <a class="relative hidden md:block text-gray-500">
               {user ? (
                 <span class="text-base font-normal">

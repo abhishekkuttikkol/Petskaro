@@ -2,38 +2,34 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { db } from "../Firebase/config";
 import petskaro from "../petskaro.png";
-import SendIcon from '@material-ui/icons/Send';
+import SendIcon from "@material-ui/icons/Send";
 
 const Contact = () => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [message, setMessage] = useState("");
-    const history = useHistory();
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      db.collection('feedback').add({
-          name:name,
-          email:email,
-          feedback:message
-      }).then(()=>{
-          history.push('/')
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const history = useHistory();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    db.collection("feedback")
+      .add({
+        name: name,
+        email: email,
+        feedback: message,
       })
-      
-    };
-    return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      .then(() => {
+        history.push("/");
+      });
+  };
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-        <img
-            className="mx-auto h-40 w-auto"
-            src={petskaro}
-            alt="Workflow"
-          />
+          <img className="mx-auto h-40 w-auto" src={petskaro} alt="Workflow" />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Contact Us
           </h2>
-          
         </div>
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           <input type="hidden" name="remember" defaultValue="true" />
@@ -54,7 +50,7 @@ const Contact = () => {
                 placeholder="Full Name"
               />
             </div>
-        
+
             <div>
               <label htmlFor="email-address" className="sr-only">
                 Email address
@@ -75,7 +71,9 @@ const Contact = () => {
               <label htmlFor="password" className="sr-only">
                 Password
               </label>
-              <textarea rows="4" cols="50"
+              <textarea
+                rows="4"
+                cols="50"
                 id="password"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
@@ -89,7 +87,6 @@ const Contact = () => {
             </div>
           </div>
 
-        
           <div>
             <button
               type="submit"
@@ -101,13 +98,13 @@ const Contact = () => {
                   aria-hidden="true"
                 />
               </span>
-                Send
+              Send
             </button>
           </div>
         </form>
       </div>
     </div>
-    )
-}
+  );
+};
 
-export default Contact
+export default Contact;

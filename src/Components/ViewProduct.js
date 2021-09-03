@@ -7,7 +7,7 @@ import { AuthContext } from "../Store/AuthContext";
 const ViewProduct = () => {
   const [pet, setPet] = useState([]);
   const { user } = useContext(AuthContext);
-  const history = useHistory()
+  const history = useHistory();
   useEffect(() => {
     const petId = window.location.pathname.split(":")[1];
     App.firestore()
@@ -22,44 +22,42 @@ const ViewProduct = () => {
 
   const WishList = (e) => {
     e.preventDefault();
-    if(user){
+    if (user) {
       db.collection("favourite")
-      .add({
-        userId: user.uid,
-        petId: pet.id,
-        imageSrc: pet.imageSrc,
-        name: pet.name,
-        price: pet.price,
-        description: pet.description,
-      })
-      .then(() => {
-        alert(`${pet.name} is added to WishList`);
-      });
-    } else{
-      history.push('/sign-in')
+        .add({
+          userId: user.uid,
+          petId: pet.id,
+          imageSrc: pet.imageSrc,
+          name: pet.name,
+          price: pet.price,
+          description: pet.description,
+        })
+        .then(() => {
+          alert(`${pet.name} is added to WishList`);
+        });
+    } else {
+      history.push("/sign-in");
     }
-   
   };
 
   const AddToCart = (e) => {
     e.preventDefault();
-    if(user){
+    if (user) {
       db.collection("cart")
-      .add({
-        userId: user.uid,
-        petId: pet.id,
-        imageSrc: pet.imageSrc,
-        name: pet.name,
-        price: pet.price,
-        description: pet.description,
-      })
-      .then(() => {
-        alert(`${pet.name} is added to Cart`);
-      });
+        .add({
+          userId: user.uid,
+          petId: pet.id,
+          imageSrc: pet.imageSrc,
+          name: pet.name,
+          price: pet.price,
+          description: pet.description,
+        })
+        .then(() => {
+          alert(`${pet.name} is added to Cart`);
+        });
     } else {
-      history.push('/sign-in')
+      history.push("/sign-in");
     }
-    
   };
 
   return (
