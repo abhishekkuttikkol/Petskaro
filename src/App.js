@@ -36,7 +36,7 @@ function App() {
               </Route>
               <Route exact path="/cart">
                 <Cart />
-                <Home />
+                {/* <Home /> */}
               </Route>
               <Route exact path="/pets:petid">
                 <ViewProductPage />

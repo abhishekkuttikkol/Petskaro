@@ -98,7 +98,11 @@ const Sidebar = () => {
                   </a>
                   <a
                     onClick={() => {
+                      if(user){
                       history.push("/wish list");
+                      } else {
+                        history.push('/sign-in')
+                      }
                     }}
                     class="cursor-pointer w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500"
                   >
