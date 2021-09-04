@@ -32,9 +32,15 @@ const WishList = () => {
               <div className="h-full flex flex-col bg-white shadow-xl ">
                 <div className="flex-1 py-6 overflow-y-auto px-4 sm:px-6">
                   <div className="flex items-start justify-between">
-                    <div className="text-lg font-medium text-gray-900">
-                      Wish List
-                    </div>
+                  {pets.length > 0 ? (
+                      <div className="text-lg font-medium text-gray-900">
+                        My Orders
+                      </div>
+                    ) : (
+                      <div className="text-lg font-medium text-gray-900">
+                        My Orders - No Items Found
+                      </div>
+                    )}
                     <div className="ml-3 h-7 flex items-center">
                       <button
                         type="button"

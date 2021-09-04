@@ -3,12 +3,24 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import Auth from "./Store/AuthContext";
+import OrderContext from "./Store/OrderContext";
+import SidebarControl from "./Store/SidebarContext";
+import Search from "./Store/SearchContext";
+import Post from "./Store/PostContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Auth>
-      <App />
-    </Auth>
+    <OrderContext>
+      <SidebarControl>
+        <Search>
+          <Post>
+            <Auth>
+              <App />
+            </Auth>
+          </Post>
+        </Search>
+      </SidebarControl>
+    </OrderContext>
   </React.StrictMode>,
   document.getElementById("root")
 );

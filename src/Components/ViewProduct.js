@@ -36,7 +36,6 @@ const ViewProduct = () => {
 
   const WishList = (e) => {
     e.preventDefault();
-
     if (user) {
       db.collection("favourite")
         .add({
@@ -105,7 +104,7 @@ const ViewProduct = () => {
         </nav>
 
         {/* Image gallery */}
-        <div className="md:hidden sm:block">
+        <div className="lg:hidden sm:block">
           <Carousel {...settings}>
             <Wrap>
               <img src={pet.imageSrc} alt="" />
@@ -128,7 +127,7 @@ const ViewProduct = () => {
           </Carousel>
         </div>
 
-        <div className="hidden md:visible mt-6 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
+        <div className="hidden md:visible  mt-6 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
           {pet.imageSrc2 && (
             <div className="hidden aspect-w-3 aspect-h-4 rounded-lg overflow-hidden lg:block">
               <img

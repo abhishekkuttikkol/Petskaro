@@ -4,21 +4,17 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ViewProductPage from "./Pages/ViewProductPage";
 import SignIn from "./Components/SignIn";
 import Signup from "./Components/Signup";
-import Post from "./Store/PostContext";
-import SidebarControl from "./Store/SidebarContext";
 import { App as Firebase } from "./Firebase/config";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { AuthContext } from "./Store/AuthContext";
 import SellerOrder from "./Components/SellerOrder";
-import Search from "./Store/SearchContext";
 import Contact from "./Components/Contact";
 import WishList from "./Components/WishList";
 import ResetPassword from "./Components/ResetPassword";
 import "tailwindcss/tailwind.css"
 import MyOrders from "./Components/MyOrders";
 import Order from "./Components/Order";
-import OrderContext from "./Store/OrderContext"
 
 function App() {
   const { setUser } = useContext(AuthContext);
@@ -29,10 +25,7 @@ function App() {
   });
   return (
     <div className="App">
-      <OrderContext>
-      <SidebarControl>
-        <Search>
-        <Post>
+      
           <Router>
             <Switch>
               <Route exact path="/">
@@ -67,10 +60,7 @@ function App() {
               </Route>
             </Switch>
           </Router>
-        </Post>
-        </Search>
-      </SidebarControl>
-      </OrderContext>
+        
     </div>
   );
 }
