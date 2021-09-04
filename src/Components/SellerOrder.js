@@ -20,6 +20,10 @@ const SellerOrder = () => {
   const { user } = useContext(AuthContext);
   const history = useHistory();
 
+  window.onload = function () {
+    window.location.reload(history.push("/"));
+  };
+
   return (
     <div className="fixed inset-y-0 right-0 pl-0 max-w-full flex">
       <div className="w-screen ">

@@ -24,6 +24,10 @@ const MyOrders = () => {
     App.firestore().collection("orders").doc(itemId).delete();
   };
 
+  window.onload = function () {
+    window.location.reload(history.push("/"));
+  };
+
   return (
     <div>
       <div>

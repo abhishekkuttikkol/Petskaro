@@ -23,6 +23,11 @@ const WishList = () => {
   const RemovePet = (itemId) => {
     App.firestore().collection("favourite").doc(itemId).delete();
   };
+
+  window.onload = function () {
+    window.location.reload(history.push("/"));
+  };
+  
   return (
     <div>
       <div>
