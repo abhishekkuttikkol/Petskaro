@@ -4,6 +4,7 @@ import SendIcon from "@material-ui/icons/Send";
 import { OrderPlaceContext } from "../Store/OrderContext";
 import { db } from "../Firebase/config";
 import { useHistory } from "react-router";
+import firebase from "firebase";
 
 const Order = () => {
   const [phone, setPhone] = useState("");
@@ -22,6 +23,7 @@ const Order = () => {
         userAddress: address,
         userCity: city,
         userPin: pin,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
       })
       .then(() => {
         alert("Order Placed Successfully");

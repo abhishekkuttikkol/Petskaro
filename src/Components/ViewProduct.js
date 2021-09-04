@@ -190,6 +190,11 @@ const ViewProduct = () => {
                     Phone : {pet.sellerPhone}
                   </span>
                 </li>
+                <li className="text-gray-400">
+                  <span className="text-gray-600">
+                    Address : {pet.sellerAddress}
+                  </span>
+                </li>
               </ul>
             </div>
             <form className="mt-6 flex">

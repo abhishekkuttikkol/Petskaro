@@ -19,10 +19,12 @@ const Home = () => {
         });
         setPets(allPosts);
       });
+      
   }, []);
   const { searchTerm } = useContext(SearchContext);
   const { setPets, pets } = useContext(PostContext);
   const history = useHistory();
+
   return (
     <main class="bg-gray-100 dark:bg-gray-800 rounded-2xl h-screen overflow-hidden relative">
       <div class="flex items-start justify-between">

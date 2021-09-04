@@ -25,7 +25,7 @@ const WishList = () => {
   };
 
   window.onload = function () {
-    window.location.reload(history.push("/"));
+    window.location.href = "/";
   };
   
   return (
