@@ -40,17 +40,19 @@ const ViewProduct = () => {
     }
   };
 
-  const AddToCart = (e) => {
+  const BuyNow = (e) => {
     e.preventDefault();
     if (user) {
-      db.collection("cart")
+      db.collection("orders")
         .add({
           userId: user.uid,
-          petId: pet.id,
+          id: pet.id,
           imageSrc: pet.imageSrc,
           name: pet.name,
           price: pet.price,
           description: pet.description,
+          userName: user.displayName,
+          sellerId:pet.sellerId
         })
         .then(() => {
           alert(`${pet.name} is added to Cart`);
@@ -144,11 +146,11 @@ const ViewProduct = () => {
             </div>
             <form className="mt-6 flex">
               <button
-                onClick={AddToCart}
+                onClick={BuyNow}
                 type="submit"
                 className="mt-10 m-2 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
-                Add to bag
+                Buy Now
               </button>
               <button
                 onClick={WishList}

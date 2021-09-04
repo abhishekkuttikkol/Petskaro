@@ -10,12 +10,13 @@ import { App as Firebase } from "./Firebase/config";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { AuthContext } from "./Store/AuthContext";
-import Cart from "./Components/Cart";
+import SellerOrder from "./Components/SellerOrder";
 import Search from "./Store/SearchContext";
 import Contact from "./Components/Contact";
 import WishList from "./Components/WishList";
 import ResetPassword from "./Components/ResetPassword";
 import "tailwindcss/tailwind.css"
+import MyOrders from "./Components/MyOrders";
 
 function App() {
   const { setUser } = useContext(AuthContext);
@@ -34,9 +35,8 @@ function App() {
               <Route exact path="/">
                 <Home />
               </Route>
-              <Route exact path="/cart">
-                <Cart />
-                {/* <Home /> */}
+              <Route exact path="/seller order">
+                <SellerOrder />
               </Route>
               <Route exact path="/pets:petid">
                 <ViewProductPage />
@@ -52,6 +52,9 @@ function App() {
               </Route>
               <Route exact path="/wish list">
                 <WishList/>
+              </Route>
+              <Route exact path="/my orders">
+                <MyOrders/>
               </Route>
               <Route exact path="/reset password">
                 <ResetPassword/>

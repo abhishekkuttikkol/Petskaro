@@ -68,7 +68,7 @@ const Sidebar = () => {
                   </a>
                   <a
                     onClick={() => {
-                      history.push("/cart");
+                      history.push("/seller order");
                     }}
                     class="cursor-pointer w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500"
                   >
@@ -79,22 +79,18 @@ const Sidebar = () => {
                                 </svg> */}
                       <ShoppingCartIcon />
                     </span>
-                    <span class="mx-4 text-sm font-normal">Cart</span>
+                    <span class="mx-4 text-sm font-normal">seller orders</span>
                   </a>
                   <a
                     onClick={() => {
-                      if (user) {
-                        setSearchTerm(user.uid);
-                      } else {
-                        history.push("/sign-in");
-                      }
+                      history.push('/my orders')
                     }}
                     class="cursor-pointer w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500"
                   >
                     <span class="text-left">
                       <BallotIcon />
                     </span>
-                    <span class="mx-4 text-sm font-normal">My Posts</span>
+                    <span class="mx-4 text-sm font-normal">My Orders</span>
                   </a>
                   <a
                     onClick={() => {
@@ -260,7 +256,7 @@ const Sidebar = () => {
 
                                   <a
                                     onClick={() => {
-                                      history.push("/cart");
+                                      history.push("/seller order");
                                     }}
                                     class="w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500"
                                   >
@@ -272,16 +268,12 @@ const Sidebar = () => {
                                       <ShoppingCartIcon />
                                     </span>
                                     <span class="mx-4 text-sm font-normal">
-                                      Cart
+                                      seller orders
                                     </span>
                                   </a>
                                   <a
                                     onClick={() => {
-                                      if (user) {
-                                        setSearchTerm(user.uid);
-                                      } else {
-                                        history.push("/sign-in");
-                                      }
+                                      history.push('/my orders')
                                     }}
                                     class="w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500"
                                   >
@@ -289,7 +281,7 @@ const Sidebar = () => {
                                       <BallotIcon />
                                     </span>
                                     <span class="mx-4 text-sm font-normal">
-                                      My Posts
+                                      My Orders
                                     </span>
                                   </a>
                                   <a
