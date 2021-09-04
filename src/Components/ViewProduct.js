@@ -3,22 +3,24 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { App, db } from "../Firebase/config";
 import { AuthContext } from "../Store/AuthContext";
-import styled from 'styled-components'
+import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { OrderPlaceContext } from "../Store/OrderContext";
 
 const ViewProduct = () => {
   let settings = {
-    dots : true,
-    infinite : true,
+    dots: true,
+    infinite: true,
     speed: 500,
     slideToShow: 1,
     slidesToScroll: 1,
-    autoplay: true
-}
+    autoplay: true,
+  };
   const [pet, setPet] = useState([]);
   const { user } = useContext(AuthContext);
+  const { setDetails } = useContext(OrderPlaceContext);
   const history = useHistory();
   useEffect(() => {
     const petId = window.location.pathname.split(":")[1];
@@ -34,6 +36,7 @@ const ViewProduct = () => {
 
   const WishList = (e) => {
     e.preventDefault();
+
     if (user) {
       db.collection("favourite")
         .add({
@@ -55,20 +58,31 @@ const ViewProduct = () => {
   const BuyNow = (e) => {
     e.preventDefault();
     if (user) {
-      db.collection("orders")
-        .add({
-          userId: user.uid,
-          id: pet.id,
-          imageSrc: pet.imageSrc,
-          name: pet.name,
-          price: pet.price,
-          description: pet.description,
-          userName: user.displayName,
-          sellerId:pet.sellerId
-        })
-        .then(() => {
-          alert(`${pet.name} is added to Cart`);
-        });
+      setDetails({
+        userId: user.uid,
+        id: pet.id,
+        imageSrc: pet.imageSrc,
+        name: pet.name,
+        price: pet.price,
+        description: pet.description,
+        userName: user.displayName,
+        sellerId: pet.sellerId,
+      });
+      history.push("/order");
+      // db.collection("orders")
+      //   .add({
+      // userId: user.uid,
+      // id: pet.id,
+      // imageSrc: pet.imageSrc,
+      // name: pet.name,
+      // price: pet.price,
+      // description: pet.description,
+      // userName: user.displayName,
+      // sellerId:pet.sellerId
+      //   })
+      //   .then(() => {
+      //     alert(`${pet.name} is added to Cart`);
+      //   });
     } else {
       history.push("/sign-in");
     }
@@ -92,20 +106,26 @@ const ViewProduct = () => {
 
         {/* Image gallery */}
         <div className="md:hidden sm:block">
-        <Carousel {...settings}>
-           <Wrap>
-               <img src={pet.imageSrc} alt=""/>
-           </Wrap>
-           {pet.imageSrc2 && <Wrap>
-               <img src={pet.imageSrc2} alt=""/>
-           </Wrap>}
-           {pet.imageSrc3 && <Wrap>
-               <img src={pet.imageSrc3} alt=""/>
-           </Wrap>}
-           {pet.imageSrc4 && <Wrap>
-               <img src={pet.imageSrc4} alt=""/>
-           </Wrap>}
-        </Carousel>
+          <Carousel {...settings}>
+            <Wrap>
+              <img src={pet.imageSrc} alt="" />
+            </Wrap>
+            {pet.imageSrc2 && (
+              <Wrap>
+                <img src={pet.imageSrc2} alt="" />
+              </Wrap>
+            )}
+            {pet.imageSrc3 && (
+              <Wrap>
+                <img src={pet.imageSrc3} alt="" />
+              </Wrap>
+            )}
+            {pet.imageSrc4 && (
+              <Wrap>
+                <img src={pet.imageSrc4} alt="" />
+              </Wrap>
+            )}
+          </Carousel>
         </div>
 
         <div className="hidden md:visible mt-6 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
@@ -238,36 +258,36 @@ const ViewProduct = () => {
 export default ViewProduct;
 
 const Carousel = styled(Slider)`
-    margin-top : 10px;
+  margin-top: 10px;
 
-    ul li button{
-        &:before{
-            font-size: 10px;
-            color: rgb(150, 158, 171);
-        }
+  ul li button {
+    &:before {
+      font-size: 10px;
+      color: rgb(150, 158, 171);
     }
+  }
 
-    li.slick-active button::before{
-        color: white;
-    }
+  li.slick-active button::before {
+    color: white;
+  }
 
-    .slick-list{
-        overflow: visible;
-    }
+  .slick-list {
+    overflow: visible;
+  }
 
-    button{
-        z-index: 1;
-    }
-`
+  button {
+    z-index: 1;
+  }
+`;
 
 const Wrap = styled.div`
-    cursor: pointer;
+  cursor: pointer;
 
-    img{
-        border: 4px solid transparent;
-        width : 100%;
-        height : 100%;
-        border-radius : 4px;
-        transition-duration: 300ms;
-    }
-`
+  img {
+    border: 4px solid transparent;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    transition-duration: 300ms;
+  }
+`;

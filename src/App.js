@@ -18,6 +18,7 @@ import ResetPassword from "./Components/ResetPassword";
 import "tailwindcss/tailwind.css"
 import MyOrders from "./Components/MyOrders";
 import Order from "./Components/Order";
+import OrderContext from "./Store/OrderContext"
 
 function App() {
   const { setUser } = useContext(AuthContext);
@@ -28,6 +29,7 @@ function App() {
   });
   return (
     <div className="App">
+      <OrderContext>
       <SidebarControl>
         <Search>
         <Post>
@@ -68,6 +70,7 @@ function App() {
         </Post>
         </Search>
       </SidebarControl>
+      </OrderContext>
     </div>
   );
 }

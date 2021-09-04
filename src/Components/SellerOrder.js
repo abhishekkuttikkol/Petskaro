@@ -70,9 +70,20 @@ const SellerOrder = () => {
                             <p className="ml-4">RS.{pet.price}</p>
                           </div>
                         </div>
-                        <div className="flex-1 flex items-end justify-between text-sm">
+                        <div className="flex-1 flex  justify-between text-sm">
                           <p className="text-gray-500">
                             Ordered By {pet.userName}
+                          </p>
+                        </div>
+                        <div className="flex-1 flex items-end justify-between text-sm">
+                          <p className="text-gray-500">
+                            Address : {pet.userAddress} , {pet.userCity} ,
+                            {pet.userPin}
+                          </p>
+                        </div>
+                        <div className="flex-1 flex items-end justify-between text-sm">
+                          <p className="text-gray-500">
+                            Phone : {pet.userPhone}
                           </p>
                         </div>
                       </div>
