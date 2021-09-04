@@ -68,7 +68,11 @@ const Sidebar = () => {
                   </a>
                   <a
                     onClick={() => {
-                      history.push("/seller order");
+                      if (user) {
+                        history.push("/seller order");
+                      } else {
+                        history.push("/sign-in");
+                      }
                     }}
                     class="cursor-pointer w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500"
                   >
@@ -83,7 +87,11 @@ const Sidebar = () => {
                   </a>
                   <a
                     onClick={() => {
-                      history.push('/my orders')
+                      if (user) {
+                        history.push("/my orders");
+                      } else {
+                        history.push("/sign-in");
+                      }
                     }}
                     class="cursor-pointer w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500"
                   >
@@ -256,7 +264,11 @@ const Sidebar = () => {
 
                                   <a
                                     onClick={() => {
-                                      history.push("/seller order");
+                                      if (user) {
+                                        history.push("/seller order");
+                                      } else {
+                                        history.push("/sign-in");
+                                      }
                                     }}
                                     class="w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500"
                                   >
@@ -273,7 +285,11 @@ const Sidebar = () => {
                                   </a>
                                   <a
                                     onClick={() => {
-                                      history.push('/my orders')
+                                      if (user) {
+                                        history.push("/my orders");
+                                      } else {
+                                        history.push("/sign-in");
+                                      }
                                     }}
                                     class="w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500"
                                   >
@@ -286,7 +302,11 @@ const Sidebar = () => {
                                   </a>
                                   <a
                                     onClick={() => {
-                                      history.push("/wish list");
+                                      if (user) {
+                                        history.push("/wish list");
+                                      } else {
+                                        history.push("/sign-in");
+                                      }
                                     }}
                                     class="w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500"
                                   >

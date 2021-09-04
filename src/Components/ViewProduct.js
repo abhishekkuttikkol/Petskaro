@@ -3,8 +3,20 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { App, db } from "../Firebase/config";
 import { AuthContext } from "../Store/AuthContext";
+import styled from 'styled-components'
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const ViewProduct = () => {
+  let settings = {
+    dots : true,
+    infinite : true,
+    speed: 500,
+    slideToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true
+}
   const [pet, setPet] = useState([]);
   const { user } = useContext(AuthContext);
   const history = useHistory();
@@ -79,7 +91,24 @@ const ViewProduct = () => {
         </nav>
 
         {/* Image gallery */}
-        <div className="mt-6 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
+        <div className="md:hidden sm:block">
+        <Carousel {...settings}>
+           <Wrap>
+               <img src={pet.imageSrc} alt=""/>
+           </Wrap>
+           {pet.imageSrc2 && <Wrap>
+               <img src={pet.imageSrc2} alt=""/>
+           </Wrap>}
+           {pet.imageSrc3 && <Wrap>
+               <img src={pet.imageSrc3} alt=""/>
+           </Wrap>}
+           {pet.imageSrc4 && <Wrap>
+               <img src={pet.imageSrc4} alt=""/>
+           </Wrap>}
+        </Carousel>
+        </div>
+
+        <div className="hidden md:visible mt-6 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
           {pet.imageSrc2 && (
             <div className="hidden aspect-w-3 aspect-h-4 rounded-lg overflow-hidden lg:block">
               <img
@@ -207,3 +236,38 @@ const ViewProduct = () => {
 };
 
 export default ViewProduct;
+
+const Carousel = styled(Slider)`
+    margin-top : 10px;
+
+    ul li button{
+        &:before{
+            font-size: 10px;
+            color: rgb(150, 158, 171);
+        }
+    }
+
+    li.slick-active button::before{
+        color: white;
+    }
+
+    .slick-list{
+        overflow: visible;
+    }
+
+    button{
+        z-index: 1;
+    }
+`
+
+const Wrap = styled.div`
+    cursor: pointer;
+
+    img{
+        border: 4px solid transparent;
+        width : 100%;
+        height : 100%;
+        border-radius : 4px;
+        transition-duration: 300ms;
+    }
+`

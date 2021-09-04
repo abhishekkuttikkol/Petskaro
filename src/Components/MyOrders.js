@@ -77,6 +77,7 @@ const MyOrders = () => {
                                   <p className="ml-4">{pet.price}</p>
                                 </div>
                               </div>
+
                               <div className="flex-1 flex items-end justify-between text-sm">
                                 <p className="text-gray-500">
                                   {pet.description}
