@@ -8,6 +8,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { OrderPlaceContext } from "../Store/OrderContext";
+import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 
 const ViewProduct = () => {
   let settings = {
@@ -213,6 +214,17 @@ const ViewProduct = () => {
                 Add to Wishlist
               </button>
             </form>
+            <a
+              href={`https://wa.me/+91${pet.sellerPhone}`}
+              type="submit"
+              className="mt-5  w-90 bg-yellow-500 border border-transparent rounded-md py-3 pl-8  flex items-center justify-center text-base font-medium text-white hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+            >
+              <WhatsAppIcon
+                className="h-5 w-5 text-white-500 group-hover:text-indigo-400"
+                aria-hidden="true"
+              />
+              Contact Seller
+            </a>
           </div>
 
           <div className="py-10 lg:pt-6 lg:pb-16 lg:col-start-1 lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
@@ -267,16 +279,16 @@ const Carousel = styled(Slider)`
   ul li button {
     &:before {
       font-size: 10px;
-      color: rgb(150, 158, 171);
+      color: rgb(0, 0, 0);
     }
   }
 
   li.slick-active button::before {
-    color: white;
+    color: black;
   }
 
   .slick-list {
-    overflow: visible;
+    overflow: invisible;
   }
 
   button {
@@ -285,13 +297,11 @@ const Carousel = styled(Slider)`
 `;
 
 const Wrap = styled.div`
-  cursor: pointer;
-
   img {
     border: 4px solid transparent;
     width: 100%;
     height: 100%;
-    border-radius: 4px;
+    border-radius: 15px;
     transition-duration: 300ms;
   }
 `;

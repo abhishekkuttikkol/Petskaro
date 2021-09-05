@@ -77,7 +77,7 @@ const SellerOrder = () => {
                             <h3>
                               <a>{pet.name}</a>
                             </h3>
-                            
+
                             <p className="ml-4">RS.{pet.price}</p>
                           </div>
                         </div>
@@ -98,7 +98,11 @@ const SellerOrder = () => {
                           </p>
                         </div>
                         <div className="flex-1 flex items-end justify-between text-sm">
-                        <p className='text-gray-500'>{(new Date(pet.timestamp)).toDateString()} {(new Date(pet.timestamp)).toTimeString()}</p>
+                          <p className="text-gray-500">
+                            {new Date(pet.timestamp).toDateString()}
+                            {" - "}
+                            {new Date(pet.timestamp).toTimeString()}
+                          </p>
                         </div>
                       </div>
                     </li>
