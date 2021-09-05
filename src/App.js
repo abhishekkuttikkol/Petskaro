@@ -15,6 +15,7 @@ import ResetPassword from "./Components/ResetPassword";
 import "tailwindcss/tailwind.css"
 import MyOrders from "./Components/MyOrders";
 import Order from "./Components/Order";
+import AddPets from "./Components/AddPets";
 
 function App() {
   const { setUser } = useContext(AuthContext);
@@ -54,6 +55,9 @@ function App() {
               </Route>
               <Route exact path="/order">
                 <Order/>
+              </Route>
+              <Route exact path="/add pet">
+                <AddPets/>
               </Route>
               <Route exact path="/reset password">
                 <ResetPassword/>
