@@ -12,6 +12,7 @@ import petskaro from "../petskaro.png";
 import BallotIcon from "@material-ui/icons/Ballot";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
+import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
 
 const Sidebar = () => {
   const history = useHistory();
@@ -23,7 +24,7 @@ const Sidebar = () => {
         <div class="flex items-start justify-between">
           <div class="h-screen hidden  sm:block lg:block my-4 ml-4 shadow-2xl relative w-50">
             <div class="bg-white h-full rounded-2xl dark:bg-gray-700">
-              <div class="flex items-center justify-center pt-6">
+              <div class="flex items-center justify-center pt-0">
                 {/* <svg width="35" height="30" viewBox="0 0 256 366" version="1.1" preserveAspectRatio="xMidYMid">
                         <defs>
                             <linearGradient x1="12.5189534%" y1="85.2128611%" x2="88.2282959%" y2="10.0225497%" id="linearGradient-1">
@@ -44,7 +45,7 @@ const Sidebar = () => {
                     </svg> */}
                 <img class="h-28" src={petskaro} alt="" />
               </div>
-              <nav class="mt-6">
+              <nav class="mt-0">
                 <div>
                   <a
                     onClick={() => {
@@ -54,7 +55,7 @@ const Sidebar = () => {
                         history.push("/sign-in");
                       }
                     }}
-                    class="hover:bg-gray-200 rounded-md cursor-pointer w-full font-thin uppercase text-gray-500 hover:text-blue-500  flex items-center p-4 my-2 transition-colors duration-200 justify-start   dark:from-gray-700 dark:to-gray-800"
+                    class="hover:bg-gray-200 rounded-md cursor-pointer w-full font-thin uppercase text-gray-500 hover:text-blue-500  flex items-center p-4 my-1 transition-colors duration-200 justify-start   dark:from-gray-700 dark:to-gray-800"
                   >
                     <span class="text-left">
                       <AddCircleIcon />
@@ -64,12 +65,27 @@ const Sidebar = () => {
                   <a
                     onClick={() => {
                       if (user) {
+                        history.push("/my posts");
+                      } else {
+                        history.push("/sign-in");
+                      }
+                    }}
+                    class="hover:bg-gray-200 rounded-md cursor-pointer w-full font-thin uppercase text-gray-500 hover:text-blue-500  flex items-center p-4 my-1 transition-colors duration-200 justify-start   dark:from-gray-700 dark:to-gray-800"
+                  >
+                    <span class="text-left">
+                      <InsertDriveFileIcon />
+                    </span>
+                    <span class="mx-4 text-sm font-normal">My Posts</span>
+                  </a>
+                  <a
+                    onClick={() => {
+                      if (user) {
                         history.push("/seller order");
                       } else {
                         history.push("/sign-in");
                       }
                     }}
-                    class="hover:bg-gray-200 rounded-md cursor-pointer w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500"
+                    class="hover:bg-gray-200 rounded-md cursor-pointer w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-1 transition-colors duration-200 justify-start hover:text-blue-500"
                   >
                     <span class="text-left">
                       {/* <svg width="20" height="20" fill="currentColor" class="m-auto" viewBox="0 0 2048 1792" xmlns="http://www.w3.org/2000/svg">
@@ -88,7 +104,7 @@ const Sidebar = () => {
                         history.push("/sign-in");
                       }
                     }}
-                    class="hover:bg-gray-200 rounded-md cursor-pointer w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500"
+                    class="hover:bg-gray-200 rounded-md cursor-pointer w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-1 transition-colors duration-200 justify-start hover:text-blue-500"
                   >
                     <span class="text-left">
                       <BallotIcon />
@@ -103,7 +119,7 @@ const Sidebar = () => {
                         history.push("/sign-in");
                       }
                     }}
-                    class="hover:bg-gray-200 rounded-md cursor-pointer w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500"
+                    class="hover:bg-gray-200 rounded-md cursor-pointer w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-1 transition-colors duration-200 justify-start hover:text-blue-500"
                   >
                     <span class="text-left">
                       <FavoriteIcon />
@@ -115,7 +131,7 @@ const Sidebar = () => {
                     onClick={() => {
                       history.push("/contact");
                     }}
-                    class="hover:bg-gray-200 rounded-md cursor-pointer w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500"
+                    class="hover:bg-gray-200 rounded-md cursor-pointer w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-1 transition-colors duration-200 justify-start hover:text-blue-500"
                   >
                     <span class="text-left">
                       <svg
@@ -134,7 +150,7 @@ const Sidebar = () => {
                   {user && (
                     <a
                       onClick={() => App.auth().signOut()}
-                      class="hover:bg-gray-200 rounded-md w-full cursor-pointer font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500"
+                      class="hover:bg-gray-200 rounded-md w-full cursor-pointer font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-1 transition-colors duration-200 justify-start hover:text-blue-500"
                     >
                       <span class="text-left">
                         <LockIcon />
@@ -250,6 +266,24 @@ const Sidebar = () => {
                                     </span>
                                     <span class="mx-4 text-sm font-normal">
                                       Add Pet
+                                    </span>
+                                  </a>
+
+                                  <a
+                                    onClick={() => {
+                                      if (user) {
+                                        history.push("/my posts");
+                                      } else {
+                                        history.push("/sign-in");
+                                      }
+                                    }}
+                                    class="w-full font-thin uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start dark:from-gray-700 dark:to-gray-800 border-r-4"
+                                  >
+                                    <span class="text-left">
+                                      <InsertDriveFileIcon />
+                                    </span>
+                                    <span class="mx-4 text-sm font-normal">
+                                      My Posts
                                     </span>
                                   </a>
 
