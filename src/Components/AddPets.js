@@ -83,6 +83,8 @@ const Addpets = () => {
                     <ExpandMoreIcon />
 
                     <option></option>
+                    <option>Bird</option>
+                    <option>Pegion</option>
                     <option>Dog</option>
                     <option>Cat</option>
                     <option>Fish</option>
