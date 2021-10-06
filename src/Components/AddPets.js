@@ -25,8 +25,11 @@ const Addpets = () => {
 
   useEffect(() => {
     console.log(urls.length);
-    if (urls.length === 4) {
-      uploadData();
+    console.log(image.length);
+    if (urls.length === image.length) {
+      if (urls.length !== 0) {
+        uploadData();
+      }
     }
   }, [urls]);
 
