@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { LockClosedIcon } from "@heroicons/react/solid";
 import { App } from "../Firebase/config";
 import { AuthContext } from "../Store/AuthContext";
@@ -16,42 +16,84 @@ const Addpets = () => {
   const [sellerAddress, setSellerAddress] = useState("");
   const [sellerPlace, setSellerPlace] = useState("");
   const [sellerPhone, setSellerPhone] = useState("");
-  const [image, setImage] = useState("");
-  // const [image1, setImage1] = useState("");
-  // const [image2, setImage2] = useState("");
-  // const [image3, setImage3] = useState("");
+  const [image, setImage] = useState([]);
+  const [urls, setUrls] = useState([]);
+
   const { user } = useContext(AuthContext);
   const history = useHistory();
+  const promises = [];
+
+  useEffect(() => {
+    console.log(urls.length);
+    if (urls.length === 4) {
+      uploadData();
+    }
+  }, [urls]);
+
+  const uploadData = () => {
+    App.firestore()
+      .collection("pets")
+      .add({
+        sellerId: user.uid,
+        description: description,
+        details: details,
+        imageSrc: urls[0],
+        imageSrc2: urls[1],
+        imageSrc3: urls[2],
+        imageSrc4: urls[3],
+        name: name,
+        price: price,
+        sellerAddress: sellerAddress,
+        sellerName: sellerName,
+        sellerPhone: sellerPhone,
+        sellerPlace: sellerPlace,
+      })
+      .then(() => {
+        setLoading(false);
+        alert("Upload successful");
+        history.push("/");
+      });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    App.storage()
-      .ref(`/image/${image.name}`)
-      .put(image)
-      .then(({ ref }) => {
-        ref.getDownloadURL().then((url) => {
-          App.firestore()
-            .collection("pets")
-            .add({
-              sellerId: user.uid,
-              description: description,
-              details: details,
-              imageSrc: url,
-              name: name,
-              price: price,
-              sellerAddress: sellerAddress,
-              sellerName: sellerName,
-              sellerPhone: sellerPhone,
-              sellerPlace: sellerPlace,
-            })
-            .then(() => {
-              setLoading(false);
-              alert("Upload successful");
-              history.push("/");
+    image.map((image) => {
+      const uploadTask = App.storage().ref(`images/${image.name}`).put(image);
+      promises.push(uploadTask);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (error) => {
+          console.log(error);
+        },
+        async () => {
+          await App.storage()
+            .ref("images")
+            .child(image.name)
+            .getDownloadURL()
+            .then((urls) => {
+              setUrls((prevState) => [...prevState, urls]);
             });
-        });
-      });
+        }
+      );
+      return null;
+    });
+
+    Promise.all(promises)
+      .then(() => {})
+      .catch((err) => console.log(err));
+  };
+
+  console.log("images: ", image);
+  console.log("urls", urls);
+
+  const handleChange = (e) => {
+    for (let i = 0; i < e.target.files.length; i++) {
+      const newImage = e.target.files[i];
+      newImage["id"] = Math.random();
+      setImage((prevState) => [...prevState, newImage]);
+    }
   };
 
   return (
@@ -82,7 +124,7 @@ const Addpets = () => {
                   >
                     <ExpandMoreIcon />
 
-                    <option></option>
+                    <option>----</option>
                     <option>Bird</option>
                     <option>Pegion</option>
                     <option>Dog</option>
@@ -100,7 +142,7 @@ const Addpets = () => {
                     autoComplete="description"
                     required
                     className="appearance-none mt-3 rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                    placeholder="Description"
+                    placeholder="Breed of the Pet"
                   />
                 </div>
                 <div>
@@ -181,10 +223,10 @@ const Addpets = () => {
                 <div className="flex">
                   <div>
                     <label className="block text-sm font-medium text-gray-700">
-                      Photo - 1
+                      Photo - Maximum 4 Photos
                     </label>
                     <div className="mt-1 flex items-center">
-                      <span className="inline-block h-12 w-12  overflow-hidden bg-gray-100">
+                      {/* <span className="inline-block h-12 w-12  overflow-hidden bg-gray-100">
                         {image && (
                           <img
                             className="w-full h-full"
@@ -192,92 +234,20 @@ const Addpets = () => {
                             alt=""
                           />
                         )}
-                      </span>
+                      </span> */}
                       <input
                         required
                         onChange={(e) => {
-                          setImage(e.target.files[0]);
+                          // setImage(e.target.files[0]);
+                          handleChange(e);
                         }}
                         type="file"
+                        multiple
                         className="appearance-none rounded-md mt-2 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                       />
                     </div>
                   </div>
-
-                  {/* <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Photo - 2 (optional)
-                </label>
-                <div className="mt-1 flex items-center">
-                  <span className="inline-block h-12 w-12  overflow-hidden bg-gray-100">
-                    {image1 && (
-                      <img
-                        className="w-full h-full"
-                        src={image1 && URL.createObjectURL(image1)}
-                        alt=""
-                      />
-                    )}
-                  </span>
-                  <input
-                    onChange={(e) => {
-                      setImage1(e.target.files[0]);
-                    }}
-                    type="file"
-                    className="appearance-none rounded-md mt-2 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  />
                 </div>
-              </div> */}
-                </div>
-
-                {/* <div className="flex">
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Photo - 3 (optional)
-                </label>
-                <div className="mt-1 flex items-center">
-                  <span className="inline-block h-12 w-12  overflow-hidden bg-gray-100">
-                    {image2 && (
-                      <img
-                        className="w-full h-full"
-                        src={image2 && URL.createObjectURL(image2)}
-                        alt=""
-                      />
-                    )}
-                  </span>
-                  <input
-                    onChange={(e) => {
-                      setImage2(e.target.files[0]);
-                    }}
-                    type="file"
-                    className="appearance-none rounded-md mt-2 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Photo - 4 (optional)
-                </label>
-                <div className="mt-1 flex items-center">
-                  <span className="inline-block h-12 w-12  overflow-hidden bg-gray-100">
-                    {image3 && (
-                      <img
-                        className="w-full h-full"
-                        src={image3 && URL.createObjectURL(image3)}
-                        alt=""
-                      />
-                    )}
-                  </span>
-                  <input
-                    onChange={(e) => {
-                      setImage3(e.target.files[0]);
-                    }}
-                    type="file"
-                    className="appearance-none rounded-md mt-2 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  />
-                </div>
-              </div>
-            </div> */}
               </div>
 
               <div>

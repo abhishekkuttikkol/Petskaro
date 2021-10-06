@@ -7,7 +7,6 @@ import { App } from "../Firebase/config";
 import { PostContext } from "../Store/PostContext";
 import Banner from "../Components/Banner";
 import { SearchContext } from "../Store/SearchContext";
-import Footer from "../Components/Footer";
 
 const Home = () => {
   useEffect(() => {
@@ -38,7 +37,7 @@ const Home = () => {
                 .filter((pet) => {
                   if (searchTerm === undefined) {
                     return pet;
-                  } else if (pet.description.includes(searchTerm)) {
+                  } else if (pet.description.toLowerCase().includes(searchTerm.toLowerCase())) {
                     return pet;
                   } else if (
                     pet.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -59,7 +58,6 @@ const Home = () => {
                   </div>
                 ))}
             </div>
-            <Footer/>
           </div>
         </div>
       </div>
