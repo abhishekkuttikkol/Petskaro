@@ -92,6 +92,8 @@ const Addpets = () => {
   console.log("urls", urls);
 
   const handleChange = (e) => {
+    e.preventDefault();
+
     for (let i = 0; i < e.target.files.length; i++) {
       const newImage = e.target.files[i];
       newImage["id"] = Math.random();
@@ -127,7 +129,7 @@ const Addpets = () => {
                   >
                     <ExpandMoreIcon />
 
-                    <option>----</option>
+                    <option>Pet :</option>
                     <option>Bird</option>
                     <option>Pegion</option>
                     <option>Dog</option>
@@ -241,11 +243,17 @@ const Addpets = () => {
                       <input
                         required
                         onChange={(e) => {
-                          // setImage(e.target.files[0]);
-                          handleChange(e);
+                          if (e.target.files.length > 4) {
+                            alert("Only 4 files accepted.");
+                            window.location.reload();
+                          } else {
+                            // setImage(e.target.files[0]);
+                            handleChange(e);
+                          }
                         }}
                         type="file"
                         multiple
+                        accept="image/png, image/gif, image/jpeg"
                         className="appearance-none rounded-md mt-2 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                       />
                     </div>
