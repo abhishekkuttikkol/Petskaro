@@ -37,10 +37,20 @@ const Home = () => {
                 .filter((pet) => {
                   if (searchTerm === undefined) {
                     return pet;
-                  } else if (pet.description.toLowerCase().includes(searchTerm.toLowerCase())) {
+                  } else if (
+                    pet.description
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase())
+                  ) {
                     return pet;
                   } else if (
                     pet.name.toLowerCase().includes(searchTerm.toLowerCase())
+                  ) {
+                    return pet;
+                  } else if (
+                    pet.sellerPlace
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase())
                   ) {
                     return pet;
                   }
