@@ -16,6 +16,7 @@ const Addpets = () => {
   const [sellerAddress, setSellerAddress] = useState("");
   const [sellerPlace, setSellerPlace] = useState("");
   const [sellerPhone, setSellerPhone] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
   const [image, setImage] = useState([]);
   const [urls, setUrls] = useState([]);
 
@@ -49,6 +50,7 @@ const Addpets = () => {
         sellerAddress: sellerAddress,
         sellerName: sellerName,
         sellerPhone: sellerPhone,
+        whatsapp: whatsapp,
         sellerPlace: sellerPlace,
       })
       .then(() => {
@@ -221,8 +223,18 @@ const Addpets = () => {
                     type="tel"
                     autoComplete="tel"
                     required
+                    className="appearance-none mr-2 rounded-md mt-2 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    placeholder="Phone Number"
+                  />
+                  <input
+                    id="seller phone"
+                    value={whatsapp}
+                    onChange={(e) => setWhatsapp(e.target.value)}
+                    name="seller phone"
+                    type="tel"
+                    autoComplete="tel"
                     className="appearance-none rounded-md mt-2 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                    placeholder="Seller Phone"
+                    placeholder="Whatsapp (Optional)"
                   />
                 </div>
                 <div className="flex">

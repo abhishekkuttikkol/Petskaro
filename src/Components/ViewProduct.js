@@ -229,7 +229,12 @@ const ViewProduct = () => {
                   </button>
                 </form>
                 <a
-                  href={`https://wa.me/+91${pet.sellerPhone}`}
+                  onClick={() => {
+                    if (!pet.whatsapp) {
+                      alert("This Seller has no Whatsapp account");
+                    }
+                  }}
+                  href={pet.whatsapp && `https://wa.me/+91${pet.whatsapp}`}
                   type="submit"
                   className="mt-5  w-90 bg-yellow-500 border border-transparent rounded-md py-3 pl-8  flex items-center justify-center text-base font-medium text-white hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
                 >
