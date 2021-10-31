@@ -6,12 +6,13 @@ const Posts = ({ pet }) => {
       <div class=" lg:w-full mb-4 p-2 cursor-pointer">
         <div class="shadow-xl rounded-2xl p-5 bg-white dark:bg-gray-700 w-full">
           <div key={pet.id} className="group relative">
-            <div className=" w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+            <div className="relative  w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
               <img
                 src={pet.imageSrc}
                 alt={pet.imageAlt}
                 className="w-full h-full object-center object-cover lg:w-full lg:h-full"
               />
+              <p className="absolute w-full py-2.5 bottom-0 inset-x-0 text-white text-xl text-center">{pet.sellerPlace}</p>
             </div>
             <div className="mt-4 flex justify-between">
               <div>
