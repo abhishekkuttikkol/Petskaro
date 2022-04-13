@@ -19,7 +19,7 @@ const Banner = () => {
                   {/* <SpeakerphoneIcon className="h-6 w-6 text-white" aria-hidden="true" /> */}
                 </span>
                 <p className="ml-3 font-medium text-white truncate">
-                  <span className="">Sign up to Explore</span>
+                  <span className="">Sign up to petskaro</span>
                 </p>
               </div>
               <div className="order-3 mt-2 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto">
